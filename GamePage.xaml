@@ -3,29 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.MathGame.GamePage"
              Title="GamePage">
-    <VerticalStackLayout>
-        <Label 
-            x:Name="QuestionLabel"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Entry
-            x:Name="Answer"
-            HorizontalOptions="Center">
-        </Entry>
-        <Button
-            x:Name="SubmitAnswer"
-            Text="Answer"
-            Clicked="OnAnswerSubmitted"
-            HorizontalOptions="Center"/>
-        <Label 
-            x:Name="AnswerLabel"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
+    <VerticalStackLayout
+        Padding="100"
+        Spacing="25">
+        <VerticalStackLayout
+            x:Name="QuestionArea"
+            Spacing="25">
+
+            <Label 
+                x:Name="QuestionLabel"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="32"/>
+            <Entry
+                x:Name="AnswerEntry"
+                HorizontalOptions="Center">
+            </Entry>
+            <Button
+                x:Name="SubmitAnswer"
+                Text="Answer"
+                Clicked="OnAnswerSubmitted"
+                HorizontalOptions="Center"/>
+            <Label 
+                x:Name="AnswerLabel"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="32" />
+        </VerticalStackLayout>
+
         <Label
             x:Name="GameOverLabel"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            FontSize="32" />
+        <Button
+            IsVisible="false"
+            x:Name="BackToMenuBtn"
+            Text="Back to Menu"
+            Clicked="OnBackToMenu"
+            HorizontalOptions="Center"/>
         
     </VerticalStackLayout>
 </ContentPage>
