@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Maui.MathGame.Data;
+using Microsoft.Extensions.Logging;
 
 namespace Maui.MathGame
 {
@@ -15,9 +16,12 @@ namespace Maui.MathGame
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            string _dbPath = Path.Combine(FileSystem.AppDataDirectory, "game.db");
+
+            builder.Services.AddSingleton(s =>
+            ActivatorUtilities.CreateInstance<GameRepository>(s, _dbPath));
+
+
 
             return builder.Build();
         }
