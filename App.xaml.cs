@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Maui.MathGame.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Maui.MathGame
 {
     public partial class App : Application
     {
-        public App()
+        public static GameRepository GameRepository { get; private set; }
+        public App(GameRepository gameRepository)
         {
             InitializeComponent();
+            GameRepository = gameRepository;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

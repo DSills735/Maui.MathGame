@@ -1,3 +1,4 @@
+using Maui.MathGame.Models;
 using Microsoft.Maui.Controls.Platform.Compatibility;
 using System.Runtime.CompilerServices;
 using Windows.Gaming.XboxLive.Storage;
@@ -98,9 +99,24 @@ public partial class GamePage : ContentPage
 
     private void GameOver()
     {
+        GameOperation gameOperation = GameType switch
+        {
+            "Addition" => GameOperation.Addition,
+            "Subtraction" => GameOperation.Subtraction,
+            "Multiplication" => GameOperation.Multiplication,
+            "Division" => GameOperation.Division,
+            _ => throw new InvalidOperationException("Unknown game type")
+        };
         QuestionArea.IsVisible = false;
         BackToMenuBtn.IsVisible = true;
         GameOverLabel.Text = $"Game Over! Your score: {score}/{totalQuestions}";
+
+        App.GameRepository.Add(new Game
+        {
+            Dateplayed = DateTime.Now,
+            Type = gameOperation,
+            Score = score
+        });
     }
 
     private void OnBackToMenu(object sender, EventArgs e)
